@@ -16,6 +16,7 @@
 		840AEFB7247FB15600B28D25 /* NetworkManagerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840AEFB6247FB15600B28D25 /* NetworkManagerViewController.swift */; };
 		840AEFB9247FC85F00B28D25 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840AEFB8247FC85F00B28D25 /* SearchViewController.swift */; };
 		840AEFBC247FDB5400B28D25 /* WeatherModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840AEFBB247FDB5400B28D25 /* WeatherModel.swift */; };
+		845511E8248D390100CCDBC0 /* NetworkDataFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845511E7248D390100CCDBC0 /* NetworkDataFetcher.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		840AEFB6247FB15600B28D25 /* NetworkManagerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManagerViewController.swift; sourceTree = "<group>"; };
 		840AEFB8247FC85F00B28D25 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		840AEFBB247FDB5400B28D25 /* WeatherModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherModel.swift; sourceTree = "<group>"; };
+		845511E7248D390100CCDBC0 /* NetworkDataFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkDataFetcher.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,6 +82,7 @@
 			isa = PBXGroup;
 			children = (
 				840AEFB6247FB15600B28D25 /* NetworkManagerViewController.swift */,
+				845511E7248D390100CCDBC0 /* NetworkDataFetcher.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -163,6 +166,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				845511E8248D390100CCDBC0 /* NetworkDataFetcher.swift in Sources */,
 				840AEFB9247FC85F00B28D25 /* SearchViewController.swift in Sources */,
 				840AEFB5247FB13600B28D25 /* DetailViewController.swift in Sources */,
 				840AEF9E247E772000B28D25 /* AppDelegate.swift in Sources */,

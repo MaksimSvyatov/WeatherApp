@@ -1,5 +1,5 @@
 //
-//  NetworkManagerViewController.swift
+//  NetworkManager.swift
 //  WheatherApp
 //
 //  Created by Admin on 28.05.2020.
@@ -9,31 +9,24 @@
 import Foundation
 
 protocol SearchServiceProtocol {
-    func searchCity(urlString: String, completion: @escaping (Result<WeatherInformation, Error>) -> Void)
+    func searchCity(urlString: String, completion: @escaping (Result<Data, Error>) -> Void)
 }
 
-class NetworkManagerViewController: SearchServiceProtocol {
+class NetworkManager: SearchServiceProtocol {
     
-    func searchCity(urlString: String, completion: @escaping (Result<WeatherInformation, Error>) -> Void) {
+    func searchCity(urlString: String, completion: @escaping (Result<Data, Error>) -> Void) {
         
         guard let url = URL(string: urlString) else { return }
         URLSession.shared.dataTask(with: url) { (data, response, error) in
             DispatchQueue.main.async {
                 if let error = error {
-                    print("Some error")
+                    print("Error", error.localizedDescription)
                     completion(.failure(error))
                     return
                 }
                 
                 guard let data = data else { return }
-                do {
-                    let weather = try JSONDecoder().decode(WeatherInformation.self, from: data)
-                    
-                    completion(.success(weather))
-                } catch let jsonError {
-                    print("Failed to parse JSON", jsonError)
-                    completion(.failure(jsonError))
-                }
+                completion(.success(data))
             }
         }.resume()
     }

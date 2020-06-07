@@ -12,36 +12,23 @@ class SearchViewController: UIViewController, UISearchControllerDelegate {
     
     @IBOutlet weak var tableView: UITableView!
     let searchController = UISearchController(searchResultsController: nil)
-    let searchCity: SearchServiceProtocol = NetworkManagerViewController()
-    let urlString = "https://samples.openweathermap.org/data/2.5/weather?q=London,uk&appid=8377ec5a9d2db6e91c9d69e92c0473ac"
+    let networkDataFetcher = NetworkDataFetcher()
+    var weatherInConcreteCity: WeatherInformation? = nil
+    private var timer: Timer?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupSearchBar()
         setupTableView()
-        searchCity.searchCity(urlString: urlString) { (result) in
-            switch result {
-                
-            case .success(let searchResponse):
-                print(searchResponse.name, searchResponse.main?.temp)
-            case .failure(let error):
-                print(error.localizedDescription)
-            }
-        }
-        
     }
     
-    
     private func setupTableView() {
-        
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
-        
     }
     
     private func setupSearchBar() {
-        
         navigationItem.searchController = searchController
         searchController.searchBar.delegate = self
         searchController.obscuresBackgroundDuringPresentation = false
@@ -51,12 +38,16 @@ class SearchViewController: UIViewController, UISearchControllerDelegate {
 
 extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3
+        return 1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        cell.textLabel?.text = "Test cell"
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell1", for: indexPath)
+        guard let tempInDouble = weatherInConcreteCity?.main?.temp else { return cell }
+        let tempInInt = Int(tempInDouble - 273.15)
+        let tempInString = String(tempInInt)
+        cell.textLabel?.text = weatherInConcreteCity?.name
+        cell.detailTextLabel?.text = tempInString
         return cell
     }
 }
@@ -64,7 +55,15 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
 extension SearchViewController: UISearchBarDelegate {
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        print(searchText)
+        let urlString = "https://api.openweathermap.org/data/2.5/weather?q=\(searchText)&appid=8377ec5a9d2db6e91c9d69e92c0473ac"
+        
+        timer?.invalidate()
+        timer = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false, block: { (_) in
+            self.networkDataFetcher.fetchCities(urlString: urlString) { (searchResponse) in
+                guard let searchResponse = searchResponse else { return }
+                self.weatherInConcreteCity = searchResponse
+                self.tableView.reloadData()
+            }
+         })
     }
-    
 }
