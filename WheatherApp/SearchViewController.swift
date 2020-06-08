@@ -26,6 +26,7 @@ class SearchViewController: UIViewController, UISearchControllerDelegate {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        tableView.isHidden = true
     }
     
     private func setupSearchBar() {
@@ -48,6 +49,7 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
         let tempInString = String(tempInInt)
         cell.textLabel?.text = weatherInConcreteCity?.name
         cell.detailTextLabel?.text = tempInString
+        tableView.isHidden = false
         return cell
     }
 }
@@ -64,6 +66,12 @@ extension SearchViewController: UISearchBarDelegate {
                 self.weatherInConcreteCity = searchResponse
                 self.tableView.reloadData()
             }
-         })
+        })
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.text = ""
+        searchBar.resignFirstResponder()
+        tableView.isHidden = true
     }
 }

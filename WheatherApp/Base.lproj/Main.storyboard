@@ -58,6 +58,9 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="VZw-zT-TMa" kind="show" trigger="accessoryAction" id="ZXH-WX-ymI"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
