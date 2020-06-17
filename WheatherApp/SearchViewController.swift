@@ -14,6 +14,7 @@ class SearchViewController: UIViewController, UISearchControllerDelegate {
     let searchController = UISearchController(searchResultsController: nil)
     let networkDataFetcher = NetworkDataFetcher()
     var weatherInConcreteCity: WeatherInformation? = nil
+    var cityCount = [String]()
     private var timer: Timer?
     
     override func viewDidLoad() {
@@ -26,7 +27,6 @@ class SearchViewController: UIViewController, UISearchControllerDelegate {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
-        tableView.isHidden = true
     }
     
     private func setupSearchBar() {
@@ -39,7 +39,7 @@ class SearchViewController: UIViewController, UISearchControllerDelegate {
 
 extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return cityCount.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -49,7 +49,6 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
         let tempInString = String(tempInInt)
         cell.textLabel?.text = weatherInConcreteCity?.name
         cell.detailTextLabel?.text = tempInString
-        tableView.isHidden = false
         return cell
     }
 }
@@ -64,14 +63,18 @@ extension SearchViewController: UISearchBarDelegate {
             self.networkDataFetcher.fetchCities(urlString: urlString) { (searchResponse) in
                 guard let searchResponse = searchResponse else { return }
                 self.weatherInConcreteCity = searchResponse
+                guard let cityName = searchResponse.name else { return }
+                self.cityCount.append(cityName)
                 self.tableView.reloadData()
             }
-        })
+       })
     }
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         searchBar.text = ""
         searchBar.resignFirstResponder()
-        tableView.isHidden = true
+        //tableView.isHidden = true
+        cityCount = []
+        tableView.reloadData()
     }
 }
