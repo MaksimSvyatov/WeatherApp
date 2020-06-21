@@ -54,7 +54,6 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
 }
 
 extension SearchViewController: UISearchBarDelegate {
-    
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         let urlString = "https://api.openweathermap.org/data/2.5/weather?q=\(searchText)&appid=8377ec5a9d2db6e91c9d69e92c0473ac"
         
@@ -67,13 +66,12 @@ extension SearchViewController: UISearchBarDelegate {
                 self.cityCount.append(cityName)
                 self.tableView.reloadData()
             }
-       })
+        })
     }
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         searchBar.text = ""
         searchBar.resignFirstResponder()
-        //tableView.isHidden = true
         cityCount = []
         tableView.reloadData()
     }
