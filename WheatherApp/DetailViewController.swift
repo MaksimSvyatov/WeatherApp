@@ -9,22 +9,26 @@
 import UIKit
 
 class DetailedViewController: UIViewController {
-
+    var data = WeatherInformation()
+    @IBOutlet weak var cityNameLabel: UILabel!
+    @IBOutlet weak var cityTemperatureLabel: UILabel!
+    @IBOutlet weak var cityTemperature: UILabel!
+    @IBOutlet weak var cityWeatherLabel: UILabel!
+    @IBOutlet weak var cityWeather: UILabel!
+    @IBOutlet weak var cityWindLabel: UILabel!
+    @IBOutlet weak var cityWind: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        showDetailedInformation()
         // Do any additional setup after loading the view.
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    func showDetailedInformation() {
+        cityNameLabel.text = data.name
+        cityTemperatureLabel.text = "Temperature"
+        
+        print(data, 11111)
     }
-    */
-
+    
 }

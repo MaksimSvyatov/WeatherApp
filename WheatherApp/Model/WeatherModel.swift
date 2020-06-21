@@ -10,9 +10,20 @@ import Foundation
 
 struct WeatherInformation: Decodable {
     var name: String?
-    var main: ConcretCityInformation?
+    var main: MainCityInformation?
+    var clouds: CloudsCityInformation?
+    var wind: WindCityInformation?
 }
 
-struct ConcretCityInformation: Decodable {
+struct MainCityInformation: Decodable {
     var temp: Double?
 }
+
+struct CloudsCityInformation: Decodable {
+    var all: Int?
+}
+
+struct WindCityInformation: Decodable {
+    var speed: Double?
+}
+

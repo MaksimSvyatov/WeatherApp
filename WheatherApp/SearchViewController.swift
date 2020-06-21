@@ -14,6 +14,8 @@ class SearchViewController: UIViewController, UISearchControllerDelegate {
     let searchController = UISearchController(searchResultsController: nil)
     let networkDataFetcher = NetworkDataFetcher()
     var weatherInConcreteCity: WeatherInformation? = nil
+    var selectedItem: WeatherInformation?
+
     var cityCount = [String]()
     private var timer: Timer?
     
@@ -35,6 +37,7 @@ class SearchViewController: UIViewController, UISearchControllerDelegate {
         searchController.obscuresBackgroundDuringPresentation = false
         navigationController?.navigationBar.prefersLargeTitles = true
     }
+  
 }
 
 extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
@@ -51,6 +54,8 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
         cell.detailTextLabel?.text = tempInString
         return cell
     }
+    
+
 }
 
 extension SearchViewController: UISearchBarDelegate {
