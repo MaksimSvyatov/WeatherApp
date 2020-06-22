@@ -11,12 +11,13 @@ import UIKit
 class SearchViewController: UIViewController, UISearchControllerDelegate {
     
     @IBOutlet weak var tableView: UITableView!
+    
     let searchController = UISearchController(searchResultsController: nil)
     let networkDataFetcher = NetworkDataFetcher()
     var weatherInConcreteCity: WeatherInformation? = nil
     var selectedItem: WeatherInformation?
-
     var cityCount = [String]()
+    
     private var timer: Timer?
     
     override func viewDidLoad() {
@@ -37,6 +38,17 @@ class SearchViewController: UIViewController, UISearchControllerDelegate {
         searchController.obscuresBackgroundDuringPresentation = false
         navigationController?.navigationBar.prefersLargeTitles = true
     }
+    
+    func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
+        selectedItem = weatherInConcreteCity
+        return indexPath
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let destinationVC = segue.destination as? DetailedViewController else { return }
+        guard let selectedItem = selectedItem else { return }
+        destinationVC.data = selectedItem
+    }
   
 }
 
@@ -54,8 +66,6 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
         cell.detailTextLabel?.text = tempInString
         return cell
     }
-    
-
 }
 
 extension SearchViewController: UISearchBarDelegate {

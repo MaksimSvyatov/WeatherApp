@@ -10,6 +10,9 @@ import UIKit
 
 class DetailedViewController: UIViewController {
     var data = WeatherInformation()
+    
+    
+    //let tempInString = String(tempInInt)
     @IBOutlet weak var cityNameLabel: UILabel!
     @IBOutlet weak var cityTemperatureLabel: UILabel!
     @IBOutlet weak var cityTemperature: UILabel!
@@ -21,14 +24,27 @@ class DetailedViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         showDetailedInformation()
-        // Do any additional setup after loading the view.
     }
+    
+    func convertDoubleInString (somethingInDouble: Double) -> String {
+        var temperatureInString = String(Int(somethingInDouble))
+        return temperatureInString
+    }
+    
+    func convertIntInstring(somethingInInt: Int) -> String {
+        var windInInt = somethingInInt
+        var windInString = String(windInInt)
+        return windInString
+    }
+    
     
     func showDetailedInformation() {
         cityNameLabel.text = data.name
         cityTemperatureLabel.text = "Temperature"
-        
-        print(data, 11111)
+        cityTemperature.text = convertDoubleInString(somethingInDouble: ((data.main?.temp)! - 273.15)) + " C"
+        cityWeatherLabel.text = "Clouds"
+        cityWeather.text = convertIntInstring(somethingInInt: (data.clouds?.all)!) + " %"
+        cityWindLabel.text = "Wind"
+        cityWind.text = convertDoubleInString(somethingInDouble: (data.wind?.speed)!) + " m/s"
     }
-    
 }
