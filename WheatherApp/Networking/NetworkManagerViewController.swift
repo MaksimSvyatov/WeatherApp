@@ -8,11 +8,12 @@
 
 import Foundation
 
-protocol SearchServiceProtocol {
-    func searchCity(urlString: String, completion: @escaping (Result<Data, Error>) -> Void)
-}
+//protocol SearchServiceProtocol {
+//    func searchCity(urlString: String, completion: @escaping (Result<Data, Error>) -> Void)
+//}
 
-class NetworkManager: SearchServiceProtocol {
+class NetworkManager//: SearchServiceProtocol
+{
     
     func searchCity(urlString: String, completion: @escaping (Result<Data, Error>) -> Void) {
         

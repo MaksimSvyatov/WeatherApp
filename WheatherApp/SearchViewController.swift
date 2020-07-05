@@ -26,6 +26,12 @@ class SearchViewController: UIViewController, UISearchControllerDelegate {
         setupTableView()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        setupSearchBar()
+        setupTableView()
+    }
+    
     private func setupTableView() {
         tableView.delegate = self
         tableView.dataSource = self
@@ -49,7 +55,6 @@ class SearchViewController: UIViewController, UISearchControllerDelegate {
         guard let selectedItem = selectedItem else { return }
         destinationVC.data = selectedItem
     }
-  
 }
 
 extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
