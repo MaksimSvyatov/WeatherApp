@@ -84,6 +84,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="cityNameLabel" destination="x71-dS-fFa" id="TSo-K6-wDp"/>
                         <outlet property="latitude" destination="9O6-Zr-kN2" id="8Na-7w-ixg"/>
                         <outlet property="longitude" destination="uTm-Ur-fLL" id="Lin-ZF-YW2"/>
                     </connections>
