@@ -31,5 +31,4 @@ class NetworkManager//: SearchServiceProtocol
             }
         }.resume()
     }
-    
 }
