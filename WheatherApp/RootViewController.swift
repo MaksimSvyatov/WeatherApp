@@ -14,11 +14,13 @@ class RootViewController: UIViewController {
     @IBOutlet weak var longitude: UILabel!
     @IBOutlet weak var latitude: UILabel!
     @IBOutlet weak var cityNameLabel: UILabel!
+    @IBOutlet weak var weatherDescriptionLabel: UILabel!
     @IBOutlet weak var temperatureLabel: UILabel!
+    @IBOutlet weak var windSpeedLabel: UILabel!
     
     var currentLatitude: Double = 0.000
     var currentLongitude: Double = 0.000
-   //var currentLocationTemperatureInString = ""
+    var currentWeatherConditions: WeatherDescriptionContainer?
     
     let networkDataFetcher = LocationWeatherDataFetcher()
     var weatherInConcreteCityViaLocation: LocationWeatherModel?
@@ -29,53 +31,36 @@ class RootViewController: UIViewController {
     
     @IBAction func getCurrentLocationByPressButton(_ sender: Any) {
         currentLocation.getCurrentLocation()
+        
         guard let currentTemporaryLatitude = currentLocation.currentLocation.location?.coordinate.latitude else { return }
-       guard let currentTemporaryLongitude = currentLocation.currentLocation.location?.coordinate.longitude else { return }
-        //guard let currentTemporaryLocationTemperatureInString = weatherInConcreteCityViaLocation?.current?.temp else { return }
+        guard let currentTemporaryLongitude = currentLocation.currentLocation.location?.coordinate.longitude else { return }
+        
+        networkDataFetcher.fetchCurrentCityConditions(urlString: urlString) { (searchResponse) in
+            guard let searchResponse = searchResponse else { return }
+            self.currentWeatherConditions = searchResponse
+        }
         
         
-        print(currentTemporaryLongitude, currentTemporaryLatitude, weatherInConcreteCityViaLocation?.main?.temp
-            , 111111)
+        print(currentTemporaryLongitude, currentTemporaryLatitude, weatherInConcreteCityViaLocation?.main?.temp, currentWeatherConditions?.weather.first,
+              111111)
         convertCoordinates()
-               urlString = "https://api.openweathermap.org/data/2.5/weather?lat=\(currentLatitude)&lon=\(currentLongitude)&appid=8377ec5a9d2db6e91c9d69e92c0473ac"
+        urlString = "https://api.openweathermap.org/data/2.5/weather?lat=\(currentLatitude)&lon=\(currentLongitude)&appid=8377ec5a9d2db6e91c9d69e92c0473ac"
         print(urlString)
         networkDataFetcher.fetchCities(urlString: urlString) { (searchResponse) in
             guard let searchResponse = searchResponse else { return }
             self.weatherInConcreteCityViaLocation = searchResponse
-            //        guard let cityName = searchResponse.name else { return }
-            //        self.cityCount.append(cityName)
-            //        self.tableView.reloadData()
         }
-        //print(currentLatitude, 1111111)
     }
     
     func convertCoordinates() -> (Double, Double) {
-        //        guard let currentTemporaryLatitude = currentLocation.currentLocation.location?.coordinate.latitude else { return }
-        //        guard let currentTemporaryLongitude = currentLocation.currentLocation.location?.coordinate.longitude else { return }
-
-       currentLatitude = currentLocation.currentLocation.location!.coordinate.latitude
-    
+        currentLatitude = currentLocation.currentLocation.location!.coordinate.latitude
         currentLongitude = currentLocation.currentLocation.location!.coordinate.longitude
-        
-       // temperatureLabel.text = String(Int(weatherInConcreteCityViaLocation!.current!.temp!))
-        
-        
-        //currentLocationTemperatureInString = String(Int(weatherInConcreteCityViaLocation!.current!.temp!))
-        
-        
-                    //self.temperatureLabel.text = String(Int(weatherInConcreteCityViaLocation?.current?.temp ?? 0))
-//        urlString = "https://api.openweathermap.org/data/2.5/weather?lat=\(currentLatitude)&lon=\(currentLongitude)&appid=8377ec5a9d2db6e91c9d69e92c0473ac"
-        //print(currentLongitude, currentLatitude)
         return (currentLongitude, currentLatitude)
-        
-    }
+            }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         currentLocation.currentLocation.delegate = self
-        
-        //currentLocation.getCurrentLocation()
-        //print(currentLocation.currentLocation.location?.coordinate, 1111111)
     }
 }
 
@@ -85,8 +70,10 @@ extension RootViewController: CLLocationManagerDelegate {
             self.latitude.text = "\(currentLatitude)"
             self.longitude.text = "\(currentLongitude)"
             self.cityNameLabel.text = weatherInConcreteCityViaLocation?.name
+            weatherDescriptionLabel.text = currentWeatherConditions?.weather.first!.description
             self.temperatureLabel.text = String(Int(weatherInConcreteCityViaLocation?.main?.temp ?? 0) - 273)
-            //"\(currentLocationTemperatureInString)" //currentLocationTemperatureInString
+            self.windSpeedLabel.text = String(Int(weatherInConcreteCityViaLocation?.wind?.speed ?? 0)) + "m/s"
+            
         }
     }
     

@@ -11,20 +11,26 @@ import Foundation
 struct LocationWeatherModel: Decodable {
     var name: String?
     var main: CurrentCityWeather?
-//    var main: MainCityInformation?
-//    var clouds: CloudsCityInformation?
-//    var wind: WindCityInformation?
+    var wind: WindInCurrentCity?
+    
+    
+    //    var main: MainCityInformation?
+    //    var clouds: CloudsCityInformation?
+}
+
+struct WeatherDescriptionContainer: Decodable {
+    var weather: [Weather]
+    
 }
 
 struct CurrentCityWeather: Decodable {
     var temp: Double?
-    //var wind_speed: Double?
 }
-//
-//struct CloudsCityInformation: Decodable {
-//    var all: Int?
-//}
-//
-//struct WindCityInformation: Decodable {
-//    var speed: Double?
-//}
+
+struct Weather: Decodable {
+    var description: String
+}
+
+struct WindInCurrentCity: Decodable {
+    var speed: Double?
+}
