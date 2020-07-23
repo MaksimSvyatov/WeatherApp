@@ -171,7 +171,7 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <segue destination="WDw-cT-pra" kind="show" id="ApD-gE-ZZU"/>
+                                            <segue destination="WDw-cT-pra" kind="show" identifier="dataFromSearchOfCities" id="ApD-gE-ZZU"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>

@@ -24,7 +24,7 @@ class RootViewController: UIViewController {
     var currentWeatherConditionsInSearchingCity: WeatherDescriptionInSearchingCityContainer?
     
     let networkDataFetcher = LocationWeatherDataFetcher()
-let searchingCityDataFetcher = NetworkDataFetcher()
+    let searchingCityDataFetcher = NetworkDataFetcher()
     var weatherInConcreteCityViaLocation: LocationWeatherModel?
     var urlString: String = ""
     
@@ -32,6 +32,7 @@ let searchingCityDataFetcher = NetworkDataFetcher()
     //var data: WeatherInformation?
     
     var data = WeatherInformation()
+    var data1: WeatherDescriptionInSearchingCityContainer?
     
     @IBAction func getCurrentLocationByPressButton(_ sender: Any) {
         currentLocation.getCurrentLocation()
@@ -58,6 +59,14 @@ let searchingCityDataFetcher = NetworkDataFetcher()
             self.windSpeedLabel.text = String(Int(self.weatherInConcreteCityViaLocation?.wind?.speed ?? 0)) + "m/s"
         }
         
+        
+//searchingCityDataFetcher.fetchSearchingCityConditions (urlString: urlString) { (searchingResponse) in
+//    guard let searchingResponse = searchingResponse else { return }
+//    self.currentWeatherConditionsInSearchingCity = searchingResponse
+//    self.weatherDescriptionLabel.text = self.currentWeatherConditionsInSearchingCity?.weather.first!.description
+//    print(self.currentWeatherConditionsInSearchingCity?.weather.first!.description, 99999)
+//}
+        
         //print(currentTemporaryLongitude, currentTemporaryLatitude, weatherInConcreteCityViaLocation?.main?.temp!, currentWeatherConditions?.weather.first, 111111)
         convertCoordinates()
         //print(urlString)
@@ -82,19 +91,28 @@ let searchingCityDataFetcher = NetworkDataFetcher()
     
     func showWeatherInformationFromCitySearching() {
         
-        searchingCityDataFetcher.fetchSearchingCityConditions (urlString: urlString) { (searchResponse) in
-            guard let searchResponse = searchResponse else { return }
-            self.currentWeatherConditionsInSearchingCity = searchResponse
-
+//        searchingCityDataFetcher.fetchSearchingCityConditions (urlString: urlString) { (searchResponse) in
+//            guard let searchResponse = searchResponse else { return }
+//            self.currentWeatherConditionsInSearchingCity = searchResponse
+//
+//
+//        }
         
+        searchingCityDataFetcher.fetchSearchingCityConditions (urlString: urlString) { (searchingResponse) in
+            guard let searchingResponse = searchingResponse else { return }
+            self.currentWeatherConditionsInSearchingCity = searchingResponse
+            self.weatherDescriptionLabel.text = self.currentWeatherConditionsInSearchingCity?.weather.first!.description
+            print(self.currentWeatherConditionsInSearchingCity?.weather.first!.description, 99999)
         }
-        self.weatherDescriptionLabel.text = currentWeatherConditionsInSearchingCity?.weather.first?.description//self.currentWeatherConditionsInSearchingCity?.weather.first!.description
+        
+        
+        self.weatherDescriptionLabel.text = data1?.weather.first?.description //currentWeatherConditionsInSearchingCity?.weather.first?.description//self.currentWeatherConditionsInSearchingCity?.weather.first!.description
         cityNameLabel.text = data.name
         
         temperatureLabel.text = String(Int(data.main?.temp ?? 0) - 273)
         windSpeedLabel.text = String(Int(data.wind?.speed ?? 0))
             + "m/s"
-        print(currentWeatherConditionsInSearchingCity?.weather.first!.description, 55555)
+        //print(currentWeatherConditionsInSearchingCity?.weather.first!.description, 55555)
     }
     
 }

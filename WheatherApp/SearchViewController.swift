@@ -14,10 +14,11 @@ class SearchViewController: UIViewController, UISearchControllerDelegate {
     
     let searchController = UISearchController(searchResultsController: nil)
     let networkDataFetcher = NetworkDataFetcher()
+    let searchingCityDataFetcher = NetworkDataFetcher()
     var currentWeatherConditionsInSearchingCity: WeatherDescriptionInSearchingCityContainer?
-    //let searchingCityDataFetcher = NetworkDataFetcher()
     var weatherInConcreteCity: WeatherInformation? = nil
     var selectedItem: WeatherInformation?
+    var selectedItem1: WeatherDescriptionInSearchingCityContainer?
     var cityCount = [String]()
     
     private var timer: Timer?
@@ -49,6 +50,7 @@ class SearchViewController: UIViewController, UISearchControllerDelegate {
     
     func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
         selectedItem = weatherInConcreteCity
+        selectedItem1 = currentWeatherConditionsInSearchingCity
         return indexPath
     }
     
@@ -57,6 +59,7 @@ class SearchViewController: UIViewController, UISearchControllerDelegate {
         guard let selectedItem = selectedItem else { return }
         print(selectedItem, 88888)
         destinationVC.data = selectedItem
+        destinationVC.data1 = selectedItem1
     }
 }
 
@@ -90,9 +93,9 @@ extension SearchViewController: UISearchBarDelegate {
                 self.tableView.reloadData()
             }
             
-            self.networkDataFetcher.fetchSearchingCityConditions (urlString: urlString) { (searchResponse) in
-                guard let searchResponse = searchResponse else { return }
-                self.currentWeatherConditionsInSearchingCity = searchResponse
+            self.searchingCityDataFetcher.fetchSearchingCityConditions (urlString: urlString) { (searchingResponse) in
+                guard let searchingResponse = searchingResponse else { return }
+                self.currentWeatherConditionsInSearchingCity = searchingResponse
                 //self.weatherDescriptionLabel.text = self.currentWeatherConditionsInSearchingCity?.weather.first!.description
                 print(self.currentWeatherConditionsInSearchingCity?.weather.first!.description, 99999)
             }

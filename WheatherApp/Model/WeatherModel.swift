@@ -28,7 +28,6 @@ struct WindCityInformation: Decodable {
     var speed: Double?
 }
 
-
 struct WeatherDescriptionInSearchingCityContainer: Decodable {
     var weather: [WeatherInSearchingCity]
 }
