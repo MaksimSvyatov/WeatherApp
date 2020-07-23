@@ -14,6 +14,8 @@ class SearchViewController: UIViewController, UISearchControllerDelegate {
     
     let searchController = UISearchController(searchResultsController: nil)
     let networkDataFetcher = NetworkDataFetcher()
+    var currentWeatherConditionsInSearchingCity: WeatherDescriptionInSearchingCityContainer?
+    //let searchingCityDataFetcher = NetworkDataFetcher()
     var weatherInConcreteCity: WeatherInformation? = nil
     var selectedItem: WeatherInformation?
     var cityCount = [String]()
@@ -51,8 +53,9 @@ class SearchViewController: UIViewController, UISearchControllerDelegate {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard let destinationVC = segue.destination as? DetailedViewController else { return }
+        guard let destinationVC = segue.destination as? RootViewController else { return }
         guard let selectedItem = selectedItem else { return }
+        print(selectedItem, 88888)
         destinationVC.data = selectedItem
     }
 }
@@ -85,6 +88,13 @@ extension SearchViewController: UISearchBarDelegate {
                 guard let cityName = searchResponse.name else { return }
                 self.cityCount.append(cityName)
                 self.tableView.reloadData()
+            }
+            
+            self.networkDataFetcher.fetchSearchingCityConditions (urlString: urlString) { (searchResponse) in
+                guard let searchResponse = searchResponse else { return }
+                self.currentWeatherConditionsInSearchingCity = searchResponse
+                //self.weatherDescriptionLabel.text = self.currentWeatherConditionsInSearchingCity?.weather.first!.description
+                print(self.currentWeatherConditionsInSearchingCity?.weather.first!.description, 99999)
             }
         })
     }

@@ -28,4 +28,21 @@
             }
         }
     }
- }
+    
+    func fetchSearchingCityConditions(urlString: String, response: @escaping (WeatherDescriptionInSearchingCityContainer?) -> Void) {
+        networkService.searchCity(urlString: urlString) { (result) in
+            switch result {
+            case .success(let data):
+                do {
+                    let weather = try JSONDecoder().decode(WeatherDescriptionInSearchingCityContainer.self, from: data)
+                    
+                    response(weather)
+                } catch let jsonError {
+                    print("Failed to parse JSON", jsonError)
+                }
+            case .failure(let error):
+                response(nil)
+            }
+        }
+    }
+}

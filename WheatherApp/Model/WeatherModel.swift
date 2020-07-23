@@ -13,6 +13,7 @@ struct WeatherInformation: Decodable {
     var main: MainCityInformation?
     var clouds: CloudsCityInformation?
     var wind: WindCityInformation?
+    
 }
 
 struct MainCityInformation: Decodable {
@@ -25,5 +26,14 @@ struct CloudsCityInformation: Decodable {
 
 struct WindCityInformation: Decodable {
     var speed: Double?
+}
+
+
+struct WeatherDescriptionInSearchingCityContainer: Decodable {
+    var weather: [WeatherInSearchingCity]
+}
+
+struct WeatherInSearchingCity: Decodable {
+    var description: String
 }
 

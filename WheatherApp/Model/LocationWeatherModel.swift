@@ -18,19 +18,21 @@ struct LocationWeatherModel: Decodable {
     //    var clouds: CloudsCityInformation?
 }
 
-struct WeatherDescriptionContainer: Decodable {
-    var weather: [Weather]
-    
-}
-
 struct CurrentCityWeather: Decodable {
     var temp: Double?
+}
+
+struct WindInCurrentCity: Decodable {
+    var speed: Double?
+}
+
+
+
+struct WeatherDescriptionContainer: Decodable {
+    var weather: [Weather]
 }
 
 struct Weather: Decodable {
     var description: String
 }
 
-struct WindInCurrentCity: Decodable {
-    var speed: Double?
-}
