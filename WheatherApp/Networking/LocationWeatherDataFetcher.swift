@@ -13,7 +13,7 @@ class LocationWeatherDataFetcher {
    
    let networkService = NetworkManager()
    
-   func fetchCities(urlString: String, response: @escaping (LocationWeatherModel?) -> Void) {
+   func fetchCurrentLocationCityWeather(urlString: String, response: @escaping (LocationWeatherModel?) -> Void) {
        networkService.searchCity(urlString: urlString) { (result) in
            switch result {
            case .success(let data):
