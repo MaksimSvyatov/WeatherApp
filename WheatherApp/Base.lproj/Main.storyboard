@@ -127,6 +127,7 @@
                         <outlet property="latitude" destination="9O6-Zr-kN2" id="8Na-7w-ixg"/>
                         <outlet property="longitude" destination="uTm-Ur-fLL" id="Lin-ZF-YW2"/>
                         <outlet property="temperatureLabel" destination="k6g-2M-c5x" id="VsD-c3-cVs"/>
+                        <outlet property="weatherDescriptionImage" destination="GLo-sC-5kR" id="nNx-1U-awU"/>
                         <outlet property="weatherDescriptionLabel" destination="roi-gG-Flq" id="DWd-82-8j6"/>
                         <outlet property="windSpeedLabel" destination="nB2-Xs-e0A" id="QLF-Px-aFG"/>
                     </connections>

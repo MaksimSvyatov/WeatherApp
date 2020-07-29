@@ -15,21 +15,11 @@ class DetailedViewController: UIViewController {
     
     //let tempInString = String(tempInInt)
     
-     @IBOutlet weak var searchingCityName: UILabel!
-    
+    @IBOutlet weak var searchingCityName: UILabel!
     @IBOutlet weak var searchingCityWeatherDescription: UILabel!
-    
     @IBOutlet weak var searchingCityWeatherDescriptionImage: UIImageView!
-    
     @IBOutlet weak var searchingCityTemperature: UILabel!
-    
     @IBOutlet weak var searchingCityWindSpeed: UILabel!
-    
-    
-   
-    
-    
-
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -52,10 +42,8 @@ class DetailedViewController: UIViewController {
         searchingCityName.text = data.name
         self.searchingCityWeatherDescription.text = data1?.weather.first?.description
         
-                searchingCityTemperature.text = convertDoubleInString(somethingInDouble: ((data.main?.temp)! - 273.15)) + " C"
-        
-        
-      
+        searchingCityTemperature.text = convertDoubleInString(somethingInDouble: ((data.main?.temp)! - 273.15)) + " C"
+        self.searchingCityWeatherDescriptionImage.image = UIImage(named: "Cloudy")
         searchingCityWindSpeed.text = convertDoubleInString(somethingInDouble: (data.wind?.speed)!) + " m/s"
     }
 }

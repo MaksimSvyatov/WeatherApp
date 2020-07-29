@@ -15,6 +15,7 @@ class RootViewController: UIViewController {
     @IBOutlet weak var latitude: UILabel!
     @IBOutlet weak var cityNameLabel: UILabel!
     @IBOutlet weak var weatherDescriptionLabel: UILabel!
+    @IBOutlet weak var weatherDescriptionImage: UIImageView!
     @IBOutlet weak var temperatureLabel: UILabel!
     @IBOutlet weak var windSpeedLabel: UILabel!
     
@@ -79,6 +80,18 @@ class RootViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         currentLocation.currentLocation.delegate = self
+        let status = CLLocationManager.authorizationStatus()
+        
+        if(status == .denied || status == .restricted || !CLLocationManager.locationServicesEnabled()){
+            return
+        }
+        
+        if(status == .notDetermined){
+            currentLocation.currentLocation.requestWhenInUseAuthorization()
+            
+            currentLocation.currentLocation.requestAlwaysAuthorization()
+            return
+        }
         //temperatureLabel.text = "0"
         //currentLocation.getPermissionToUseLocation()
     }
@@ -125,6 +138,8 @@ extension RootViewController: CLLocationManagerDelegate {
 //                                  weatherDescriptionLabel.text = currentWeatherConditions?.weather.first!.description
 //                                    self.temperatureLabel.text = String(Int(weatherInConcreteCityViaLocation?.main?.temp ?? 0) - 273)
 //                                    self.windSpeedLabel.text = String(Int(weatherInConcreteCityViaLocation?.wind?.speed ?? 0)) + "m/s"
+           
+            
              guard let currentTemporaryLatitude = currentLocation.currentLocation.location?.coordinate.latitude else { return }
                     guard let currentTemporaryLongitude = currentLocation.currentLocation.location?.coordinate.longitude else { return }
                     
@@ -142,6 +157,7 @@ extension RootViewController: CLLocationManagerDelegate {
                         guard let searchResponse = searchResponse else { return }
                         self.currentWeatherConditions = searchResponse
                         self.weatherDescriptionLabel.text = self.currentWeatherConditions?.weather.first!.description
+                        self.weatherDescriptionImage.image = UIImage(named: "Cloudy")
                         //print(self.currentWeatherConditions?.weather.startIndex, 222222)
                     }
         }
