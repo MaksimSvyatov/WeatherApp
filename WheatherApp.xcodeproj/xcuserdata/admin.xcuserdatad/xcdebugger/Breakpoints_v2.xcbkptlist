@@ -7,54 +7,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "4063386E-F39E-4593-9779-F09075E2BCF4"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "WheatherApp/RootViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "46"
-            endingLineNumber = "46"
-            landmarkName = "unknown"
-            landmarkType = "0">
-            <Locations>
-               <Location
-                  uuid = "4063386E-F39E-4593-9779-F09075E2BCF4 - 5f18e407ab17da11"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "WheatherApp.RootViewController.getCurrentLocationByPressButton(Any) -&gt; ()"
-                  moduleName = "WheatherApp"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/admin/Desktop/WheatherApp/WheatherApp/RootViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "52"
-                  endingLineNumber = "52"
-                  offsetFromSymbolStart = "1458">
-               </Location>
-               <Location
-                  uuid = "4063386E-F39E-4593-9779-F09075E2BCF4 - d377d88203d38445"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #2 (Swift.Optional&lt;WheatherApp.LocationWeatherModel&gt;) -&gt; () in WheatherApp.RootViewController.getCurrentLocationByPressButton(Any) -&gt; ()"
-                  moduleName = "WheatherApp"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/admin/Desktop/WheatherApp/WheatherApp/RootViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "53"
-                  endingLineNumber = "53"
-                  offsetFromSymbolStart = "154">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "DAEB759C-C9BF-411F-ABA8-DD5AD24AF4D9"
             shouldBeEnabled = "No"
             ignoreCount = "0"
@@ -62,10 +14,10 @@
             filePath = "WheatherApp/RootViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "39"
-            endingLineNumber = "39"
-            landmarkName = "unknown"
-            landmarkType = "0">
+            startingLineNumber = "33"
+            endingLineNumber = "33"
+            landmarkName = "getCurrentLocationByPressButton(_:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -78,10 +30,10 @@
             filePath = "WheatherApp/RootViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "133"
-            endingLineNumber = "133"
-            landmarkName = "unknown"
-            landmarkType = "0">
+            startingLineNumber = "58"
+            endingLineNumber = "58"
+            landmarkName = "locationManager(_:didUpdateLocations:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

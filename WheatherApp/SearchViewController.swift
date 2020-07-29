@@ -50,14 +50,13 @@ class SearchViewController: UIViewController, UISearchControllerDelegate {
     
     func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
         selectedItem = weatherInConcreteCity
-       selectedItem1 = currentWeatherConditionsInSearchingCity
+        selectedItem1 = currentWeatherConditionsInSearchingCity
         return indexPath
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard let destinationVC = segue.destination as? DetailedViewController else { return }
         guard let selectedItem = selectedItem else { return }
-        //print(selectedItem, 88888)
         destinationVC.data = selectedItem
         destinationVC.data1 = selectedItem1
     }
@@ -96,8 +95,6 @@ extension SearchViewController: UISearchBarDelegate {
             self.searchingCityDataFetcher.fetchSearchingCityConditions (urlString: urlString) { (searchingResponse) in
                 guard let searchingResponse = searchingResponse else { return }
                 self.currentWeatherConditionsInSearchingCity = searchingResponse
-                //self.weatherDescriptionLabel.text = self.currentWeatherConditionsInSearchingCity?.weather.first!.description
-                print(self.currentWeatherConditionsInSearchingCity?.weather.first!.description, 99999)
             }
         })
     }

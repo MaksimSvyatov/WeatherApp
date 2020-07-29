@@ -12,10 +12,6 @@ struct LocationWeatherModel: Decodable {
     var name: String?
     var main: CurrentCityWeather?
     var wind: WindInCurrentCity?
-    
-    
-    //    var main: MainCityInformation?
-    //    var clouds: CloudsCityInformation?
 }
 
 struct CurrentCityWeather: Decodable {
