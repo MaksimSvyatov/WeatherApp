@@ -18,6 +18,7 @@ class RootViewController: UIViewController {
     @IBOutlet weak var weatherDescriptionImage: UIImageView!
     @IBOutlet weak var temperatureLabel: UILabel!
     @IBOutlet weak var windSpeedLabel: UILabel!
+    @IBOutlet weak var backgroundImageView: UIImageView!
     
     var currentWeatherConditions: WeatherDescriptionContainer?
     var currentWeatherConditionsInSearchingCity: WeatherDescriptionInSearchingCityContainer?
@@ -32,6 +33,7 @@ class RootViewController: UIViewController {
     @IBAction func getCurrentLocationByPressButton(_ sender: Any) {
         currentLocation.getCurrentLocation()
     }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         currentLocation.currentLocation.delegate = self
@@ -47,11 +49,35 @@ class RootViewController: UIViewController {
             currentLocation.currentLocation.requestAlwaysAuthorization()
             return
         }
+        //setBlurEffectForBackground()
+        setFonts()
+        
+    }
+    
+    func setBlurEffectForBackground() {
+        
+        let blurEffect = UIBlurEffect(style: UIBlurEffect.Style.dark)
+        let blurEffectView = UIVisualEffectView(effect: blurEffect)
+        blurEffectView.frame = view.bounds
+        blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        backgroundImageView.addSubview(blurEffectView)
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
     }
+    
+    func setFonts() {
+        
+        cityNameLabel.font = UIFont(name: "RobotoCondensed-Bold", size: 30)
+        weatherDescriptionLabel.font = UIFont(name: "RobotoCondensed-Bold", size: 15)
+        temperatureLabel.font = UIFont(name: "RobotoCondensed-Bold", size: 25)
+        windSpeedLabel.font = UIFont(name: "RobotoCondensed-Bold", size: 15)
+        
+        
+    }
+    
 }
 
 extension RootViewController: CLLocationManagerDelegate {
@@ -67,7 +93,7 @@ extension RootViewController: CLLocationManagerDelegate {
                 guard let searchResponse = searchResponse else { return }
                 self.weatherInConcreteCityViaLocation = searchResponse
                 self.cityNameLabel.text = self.weatherInConcreteCityViaLocation?.name
-                self.temperatureLabel.text = String(Int(self.weatherInConcreteCityViaLocation?.main?.temp ?? 0) - 273)
+                self.temperatureLabel.text = String(Int(self.weatherInConcreteCityViaLocation?.main?.temp ?? 0) - 273)  + " C"
                 self.windSpeedLabel.text = String(Int(self.weatherInConcreteCityViaLocation?.wind?.speed ?? 0)) + "m/s"
             }
             
@@ -75,8 +101,16 @@ extension RootViewController: CLLocationManagerDelegate {
                 guard let searchResponse = searchResponse else { return }
                 self.currentWeatherConditions = searchResponse
                 self.weatherDescriptionLabel.text = self.currentWeatherConditions?.weather.first!.description
-                self.weatherDescriptionImage.image = UIImage(named: "Cloudy")
-                //print(self.currentWeatherConditions?.weather.startIndex, 222222)
+                
+                
+                if self.currentWeatherConditions?.weather.first!.description == "few clouds" {
+                    self.weatherDescriptionImage.image = UIImage(named: "Cloudy")
+                } else if self.currentWeatherConditions?.weather.first!.description == "overcast clouds" {
+                    self.weatherDescriptionImage.image = UIImage(named: "Overcast")
+                }
+                else {
+                    self.weatherDescriptionImage.image = UIImage(named: "Sunny")
+                }
             }
         }
     }

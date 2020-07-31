@@ -11,7 +11,7 @@ import UIKit
 class DetailedViewController: UIViewController {
     var data = WeatherInformation()
     var data1: WeatherDescriptionInSearchingCityContainer?
-
+    
     //let tempInString = String(tempInInt)
     
     @IBOutlet weak var searchingCityName: UILabel!
@@ -40,7 +40,16 @@ class DetailedViewController: UIViewController {
         searchingCityName.text = data.name
         self.searchingCityWeatherDescription.text = data1?.weather.first?.description
         searchingCityTemperature.text = convertDoubleInString(somethingInDouble: ((data.main?.temp)! - 273.15)) + " C"
-        self.searchingCityWeatherDescriptionImage.image = UIImage(named: "Cloudy")
+        
+        if self.data1?.weather.first!.description == "few clouds" {
+            self.searchingCityWeatherDescriptionImage.image = UIImage(named: "Cloudy")
+        } else if self.data1?.weather.first!.description == "overcast clouds" {
+            self.searchingCityWeatherDescriptionImage.image = UIImage(named: "Overcast")
+        }
+        else {
+            self.searchingCityWeatherDescriptionImage.image = UIImage(named: "Sunny")
+        }
+        
         searchingCityWindSpeed.text = convertDoubleInString(somethingInDouble: (data.wind?.speed)!) + " m/s"
     }
 }

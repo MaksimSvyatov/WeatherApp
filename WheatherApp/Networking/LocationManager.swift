@@ -14,23 +14,7 @@ class LocationManager {
     var currentLocation = CLLocationManager()
     
     func getCurrentLocation (){
-
-//        let status = CLLocationManager.authorizationStatus()
-//        
-//        if(status == .denied || status == .restricted || !CLLocationManager.locationServicesEnabled()){
-//            return
-//        }
-//        
-//        if(status == .notDetermined){
-//            currentLocation.requestWhenInUseAuthorization()
-//            
-//            currentLocation.requestAlwaysAuthorization()
-//            return
-//        }
-        
         currentLocation.requestLocation()
-       // print(currentLocation.location?.coordinate, 1111111)
-
-        //currentLocation.startUpdatingLocation()
+        currentLocation.startUpdatingLocation()
     }
 }

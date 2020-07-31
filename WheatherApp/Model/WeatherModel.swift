@@ -13,7 +13,6 @@ struct WeatherInformation: Decodable {
     var main: MainCityInformation?
     var clouds: CloudsCityInformation?
     var wind: WindCityInformation?
-    
 }
 
 struct MainCityInformation: Decodable {

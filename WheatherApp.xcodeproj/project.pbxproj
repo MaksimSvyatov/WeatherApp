@@ -16,6 +16,7 @@
 		840AEFB7247FB15600B28D25 /* NetworkManagerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840AEFB6247FB15600B28D25 /* NetworkManagerViewController.swift */; };
 		840AEFB9247FC85F00B28D25 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840AEFB8247FC85F00B28D25 /* SearchViewController.swift */; };
 		840AEFBC247FDB5400B28D25 /* WeatherModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840AEFBB247FDB5400B28D25 /* WeatherModel.swift */; };
+		8445DC7D24D4150500922257 /* RobotoCondensed-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8445DC7C24D4150500922257 /* RobotoCondensed-Bold.ttf */; };
 		845511E8248D390100CCDBC0 /* NetworkDataFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845511E7248D390100CCDBC0 /* NetworkDataFetcher.swift */; };
 		8455504124B31AC70009713A /* LocationWeatherModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8455504024B31AC70009713A /* LocationWeatherModel.swift */; };
 		8455504324B31B850009713A /* LocationWeatherDataFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8455504224B31B850009713A /* LocationWeatherDataFetcher.swift */; };
@@ -35,6 +36,7 @@
 		840AEFB6247FB15600B28D25 /* NetworkManagerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManagerViewController.swift; sourceTree = "<group>"; };
 		840AEFB8247FC85F00B28D25 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		840AEFBB247FDB5400B28D25 /* WeatherModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherModel.swift; sourceTree = "<group>"; };
+		8445DC7C24D4150500922257 /* RobotoCondensed-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "RobotoCondensed-Bold.ttf"; path = "Fonts/Roboto_Condensed/RobotoCondensed-Bold.ttf"; sourceTree = SOURCE_ROOT; };
 		845511E7248D390100CCDBC0 /* NetworkDataFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkDataFetcher.swift; sourceTree = "<group>"; };
 		8455504024B31AC70009713A /* LocationWeatherModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationWeatherModel.swift; sourceTree = "<group>"; };
 		8455504224B31B850009713A /* LocationWeatherDataFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationWeatherDataFetcher.swift; sourceTree = "<group>"; };
@@ -77,6 +79,7 @@
 				840AEF9F247E772000B28D25 /* SceneDelegate.swift */,
 				840AEFB8247FC85F00B28D25 /* SearchViewController.swift */,
 				84E92E2524AF22A700AADB1D /* RootViewController.swift */,
+				8445DC7C24D4150500922257 /* RobotoCondensed-Bold.ttf */,
 				840AEFBA247FDB3D00B28D25 /* Model */,
 				840AEFB4247FB13600B28D25 /* DetailViewController.swift */,
 				840AEFA3247E772000B28D25 /* Main.storyboard */,
@@ -167,6 +170,7 @@
 			files = (
 				840AEFAA247E772700B28D25 /* LaunchScreen.storyboard in Resources */,
 				840AEFA7247E772700B28D25 /* Assets.xcassets in Resources */,
+				8445DC7D24D4150500922257 /* RobotoCondensed-Bold.ttf in Resources */,
 				840AEFA5247E772000B28D25 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
