@@ -23,6 +23,7 @@ class DetailedViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         showDetailedInformation()
+        setFonts()
     }
     
     func convertDoubleInString (somethingInDouble: Double) -> String {
@@ -35,6 +36,25 @@ class DetailedViewController: UIViewController {
         var windInString = String(windInInt)
         return windInString
     }
+    
+    func setFonts() {
+        searchingCityName.font = UIFont(name: "RobotoCondensed-Bold", size: 30)
+        searchingCityName.textColor = .white
+        searchingCityWeatherDescription.font = UIFont(name: "RobotoCondensed-Bold", size: 15)
+        searchingCityWeatherDescription.textColor = .white
+        searchingCityTemperature.font = UIFont(name: "RobotoCondensed-Bold", size: 25)
+        searchingCityTemperature.textColor = .white
+        searchingCityWindSpeed.font = UIFont(name: "RobotoCondensed-Bold", size: 15)
+        searchingCityWindSpeed.textColor = .white
+    }
+    
+//    func setBlurEffectForBackground() {
+//        let blurEffect = UIBlurEffect(style: UIBlurEffect.Style.dark)
+//        let blurEffectView = UIVisualEffectView(effect: blurEffect)
+//        blurEffectView.frame = view.bounds
+//        blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+//        backgroundImageView.addSubview(blurEffectView)
+//    }
     
     func showDetailedInformation() {
         searchingCityName.text = data.name

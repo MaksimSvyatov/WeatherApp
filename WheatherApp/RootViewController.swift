@@ -54,28 +54,24 @@ class RootViewController: UIViewController {
         
     }
     
-    func setBlurEffectForBackground() {
-        
-        let blurEffect = UIBlurEffect(style: UIBlurEffect.Style.dark)
-        let blurEffectView = UIVisualEffectView(effect: blurEffect)
-        blurEffectView.frame = view.bounds
-        blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        backgroundImageView.addSubview(blurEffectView)
-        
-    }
-    
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
     }
     
     func setFonts() {
-        
         cityNameLabel.font = UIFont(name: "RobotoCondensed-Bold", size: 30)
         weatherDescriptionLabel.font = UIFont(name: "RobotoCondensed-Bold", size: 15)
         temperatureLabel.font = UIFont(name: "RobotoCondensed-Bold", size: 25)
         windSpeedLabel.font = UIFont(name: "RobotoCondensed-Bold", size: 15)
-        
-        
+    }
+    
+    func setBlurEffectForBackground() {
+        let blurEffect = UIBlurEffect(style: UIBlurEffect.Style.dark)
+        let blurEffectView = UIVisualEffectView(effect: blurEffect)
+        blurEffectView.frame = view.bounds
+        blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        backgroundImageView.addSubview(blurEffectView)
     }
     
 }
